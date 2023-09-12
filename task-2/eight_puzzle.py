@@ -51,4 +51,26 @@ def h1(s):
 def h3(s):
     # implement this function
     board, _, _ = s
-    return 0
+    goal = (1, 2, 3, 4, 5, 6, 7, 8, 0)
+
+    out_of_row = 0
+    out_of_col = 0
+
+    for idx in range(1, 9):
+        tile = board.index(idx)
+        target_tile = goal.index(idx)
+
+        row = tile // 3
+        col = tile % 3
+
+        target_row = target_tile // 3
+        target_col = target_tile % 3
+
+        if row != target_row:
+            out_of_row += 1
+        if col != target_col:
+            out_of_col += 1
+
+    total_heuristic = out_of_row + out_of_col
+
+    return total_heuristic
